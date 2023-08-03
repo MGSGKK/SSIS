@@ -1,0 +1,49 @@
+Operators In SQL Server
+	1)Arithmetic Operators
+	2)Logical Operators
+	3)Set Operators
+	4)Comparison Operators
+	5)Special Operators
+	6)Assignment Operators
+	7)String Concat Operator	
+	
+1)Arithmetic Operators
+	+,-,*,/,%
+2)Logical Operators
+	AND,OR, NOT
+3)Set Operators
+	1) UNION
+	2) UNION ALL
+	3) INTERSECT
+	4) EXCEPT
+	Set Operators Can Be Used to Combine the data sets
+		1) While Using Set Operators the DataSets Of Metadata/Columns Should Be Same
+		2) The No Of Columns Also It Should be Same.
+		3) The Column Sequences and Their Columns DataType It Should Be Same.
+4)Comparison Operators
+	=,!=,<,>,<=,>=,<!,!>,<>
+	
+5)Special Operators
+	1) BETWEEN
+	2) LIKE
+	3) IS NULL
+	4) IN
+6) Assignment Operator
+	=
+7)String Concat Operator
++ (String Concatenation)
+% (Wildcard Character)
+[ ] (Wildcard Character)
+_ (Wildcard Match One Character)
+
+ISNULL fnction
+	IsNUll Function Is Used to Replace the Null Values
+	
+COALESCE Function
+	COALESCE Function Is Used to Return First Not Null Value.
+	
+	
+	ISNULL
+	IS NULL
+	
+	

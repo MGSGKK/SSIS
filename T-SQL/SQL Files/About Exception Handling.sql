@@ -1,0 +1,600 @@
+/*
+Exception Handling /Error Handling
+*/
+
+SELECT 1/0
+
+BEGIN TRY
+	SELECT 1/0
+END TRY
+BEGIN CATCH
+		SELECT
+		ERROR_NUMBER() AS ErrorNumber,
+		ERROR_STATE() AS ErrorState,
+		ERROR_SEVERITY() AS ErrorSeverity,
+		ERROR_PROCEDURE() AS ErrorProcedure,
+		ERROR_LINE() AS ErrorLine,
+		ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+
+SELECT * FROM SYS.messages
+WHERE message_id=8134
+
+
+ALTER PROC UspPopulateData
+AS
+BEGIN
+BEGIN TRY 
+MERGE INTO [SQLB14]..Sales M
+USING [SQLB14]..Sales_Stg S ON M.SalesID=S.SalesID
+WHEN MATCHED 
+AND 
+(
+M.SaleDate<>S.SaleDate
+OR	M.SaleAmount<>S.SaleAmount
+OR	M.ProductName<>S.ProductName
+)
+THEN 
+UPDATE 
+SET M.SaleDate=S.SaleDate,
+	M.SaleAmount=S.SaleAmount,
+	M.ProductName=S.ProductName,
+	M.UpdatedDate=GETDATE()
+WHEN NOT MATCHED BY TARGET
+THEN 
+INSERT 
+(
+SalesID
+,SaleDate
+,SaleAmount
+,ProductName
+,InsertedDate
+,UpdatedDate
+)
+VALUES
+(
+S.SalesID
+,S.SaleDate
+,S.SaleAmount
+,S.ProductName
+,GETDATE()
+,NULL
+)
+WHEN NOT MATCHED BY SOURCE
+THEN
+DELETE
+OUTPUT $ACTION,INSERTED.*,DELETED.*;
+END TRY
+BEGIN CATCH
+	THROW;
+END CATCH
+
+END
+
+	BEGIN TRY
+	DECLARE @a INT ='test'
+
+	END TRY
+	
+	BEGIN CATCH
+	
+	THROW;
+	
+	END CATCH
+
+
+	BEGIN TRY
+	DECLARE @result INT
+	--Generate casting error
+	SET @result= 'This is test'
+	END TRY
+	BEGIN CATCH
+	DECLARE @ErrorMessage NVARCHAR(2048),
+			@ErrorSeverity INT,
+			@ErrorState INT
+	SELECT
+	@ErrorMessage =ERROR_MESSAGE(),
+	@ErrorSeverity =ERROR_SEVERITY(),
+	@ErrorState =ERROR_STATE()
+	
+	RAISERROR (@ErrorMessage, @ErrorSeverity,@ErrorState)
+	END CATCH 
+
+	EXEC sp_addmessage 50001, 16, 
+	N'Unit price needs to be greater than 0'
+
+SELECT * FROM SYS.messages
+WHERE message_id=50001
+
+	EXEC SP_DROPMESSAGE 50001
+
+	BEGIN TRY
+	-- Generate a divide-by-zero error  
+  SELECT
+    1 / 0 AS Error;
+	END TRY
+	BEGIN CATCH
+	RAISERROR(50001,16,1)
+	END CATCH;
+	GO
+
+DECLARE	@EmPID INT=1000
+
+IF EXISTS 
+(
+SELECT * 
+FROM Person.Person
+WHERE BusinessEntityID=@EmPID
+)
+BEGIN 
+	Print 'EMPID Available'
+END
+ELSE
+BEGIN
+	RAISERROR('EMPID Not Matched',16,1)
+END
+
+	EXEC sp_addmessage 50002, 16, 
+	N'EMPID Not Matched'
+
+DECLARE	@EmPID INT=1000
+
+IF EXISTS 
+(
+SELECT * 
+FROM Person.Person
+WHERE BusinessEntityID=@EmPID
+)
+BEGIN 
+	Print 'EMPID Available'
+END
+ELSE
+BEGIN
+	RAISERROR(50002,16,1)
+END
+
+/*
+Exception Handling Along With Transaction
+*/
+
+SELECT *FROM Employee_Main
+
+
+BEGIN TRANSACTION 
+UPDATE Employee_Main
+SET Salary=75000
+
+ROLLBACK
+
+
+BEGIN TRAN
+INSERT INTO RegionWsieSales
+VALUES('SouthIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+INSERT INTO RegionWsieSales
+VALUES('NorthIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+
+SELECT * FROM RegionWsieSales
+
+ROLLBACK
+
+
+BEGIN TRY
+	BEGIN TRAN
+	INSERT INTO RegionWsieSales
+	VALUES('EastIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('WestIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('SouthIndia',7251555.6473,2259797.9767,'djakscn	wqeo8idcuhn',8574048.7082)
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF (@@TRANCOUNT>0)
+	BEGIN
+		ROLLBACK;
+		THROW;
+	END
+	ELSE
+	BEGIN 
+		COMMIT 
+	END
+END CATCH
+
+BEGIN TRY
+	BEGIN TRAN
+	INSERT INTO RegionWsieSales
+	VALUES('EastIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('WestIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('SouthIndia',7251555.6473,2259797.9767,'djakscn	wqeo8idcuhn',8574048.7082)
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF (@@ERROR>0)
+	BEGIN
+		ROLLBACK;
+		THROW;
+	END
+	ELSE
+	BEGIN 
+		COMMIT 
+	END
+END CATCH
+
+
+
+CREATE TABLE SPLog
+(
+LogID INT IDENTITY,
+SPName VARCHAR(100),
+ErrorNumber INT,
+ErrorState VARCHAR(100),
+ErrorSeverity INT,
+ErrorLine INT,
+ErrorMessage NVARCHAR(MAX)
+)
+
+
+
+
+BEGIN TRY
+	BEGIN TRAN 
+	INSERT INTO RegionWsieSales
+	VALUES('EastIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('WestIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('SouthIndia',7251555.6473,2259797.9767,'djakscn	wqeo8idcuhn',8574048.7082)
+
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF XACT_STATE()=-1
+	BEGIN 
+		ROLLBACK TRAN
+		INSERT INTO SPLog(SPName,ErrorNumber,ErrorState,ErrorSeverity,ErrorLine,ErrorMessage)
+		SELECT ERROR_PROCEDURE() AS ErrorProcedure,		
+		ERROR_NUMBER() AS ErrorNumber,
+		ERROR_STATE() AS ErrorState,
+		ERROR_SEVERITY() AS ErrorSeverity,
+		ERROR_LINE() AS ErrorLine,
+		ERROR_MESSAGE() AS ErrorMessage;
+
+		THROW;
+	END
+	IF XACT_STATE()=1
+	BEGIN 
+		COMMIT TRAN
+	END
+
+END CATCH
+
+
+SELECT * FROM SPLog
+
+
+CREATE PROC UspPopulateTestData
+AS
+BEGIN 
+BEGIN TRY
+	BEGIN TRAN 
+	INSERT INTO RegionWsieSales
+	VALUES('EastIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('WestIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('SouthIndia',7251555.6473,2259797.9767,'djakscn	wqeo8idcuhn',8574048.7082)
+
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF XACT_STATE()=-1
+	BEGIN 
+		ROLLBACK TRAN
+		INSERT INTO SPLog(SPName,ErrorNumber,ErrorState,ErrorSeverity,ErrorLine,ErrorMessage)
+		SELECT ERROR_PROCEDURE() AS ErrorProcedure,		
+		ERROR_NUMBER() AS ErrorNumber,
+		ERROR_STATE() AS ErrorState,
+		ERROR_SEVERITY() AS ErrorSeverity,
+		ERROR_LINE() AS ErrorLine,
+		ERROR_MESSAGE() AS ErrorMessage;
+
+		THROW;
+	END
+	IF XACT_STATE()=1
+	BEGIN 
+		COMMIT TRAN
+	END
+
+END CATCH
+END
+
+EXEC UspPopulateTestData
+
+
+
+
+
+/*
+Exception Handling
+*/
+BEGIN TRY
+	-- Generate a divide-by-zero error  
+  SELECT
+    1 / 0 AS Error;
+END TRY
+	BEGIN CATCH
+	SELECT
+		ERROR_NUMBER() AS ErrorNumber,
+		ERROR_STATE() AS ErrorState,
+		ERROR_SEVERITY() AS ErrorSeverity,
+		ERROR_PROCEDURE() AS ErrorProcedure,
+		ERROR_LINE() AS ErrorLine,
+		ERROR_MESSAGE() AS ErrorMessage;
+	END CATCH;
+	GO
+
+	SELECT * FROM sys.sysmessages
+
+	EXEC sp_addmessage 50001, 16, 
+	N'Unit price needs to be greater than 0'
+
+	EXEC SP_DROPMESSAGE 50001
+
+	BEGIN TRY
+	-- Generate a divide-by-zero error  
+  SELECT
+    1 / 0 AS Error;
+	END TRY
+	BEGIN CATCH
+	RAISERROR(50001,16,1)
+	END CATCH;
+	GO
+
+	BEGIN TRY
+
+	-- write your SQL statements.
+
+	DECLARE @a INT ='test'
+
+	END TRY
+	
+	BEGIN CATCH
+	
+	THROW;
+	
+	END CATCH
+
+
+DECLARE	@EmPID INT=1000
+
+IF EXISTS 
+(
+SELECT * 
+FROM Person.Person
+WHERE BusinessEntityID=@EmPID
+)
+BEGIN 
+	Print 'EMPID Available'
+END
+ELSE
+BEGIN
+	RAISERROR('EMPID Not Matched',16,1)
+END
+
+
+SELECT * FROM sys.sysmessages
+
+	EXEC sp_addmessage 50002, 16, 
+	N'EMPID Not Matched'
+
+
+DECLARE	@EmPID INT=1000
+
+IF EXISTS 
+(
+SELECT * 
+FROM Person.Person
+WHERE BusinessEntityID=@EmPID
+)
+BEGIN 
+	Print 'EMPID Available'
+END
+ELSE
+BEGIN
+	RAISERROR(50002,16,1)
+END
+
+/*
+Exception Handling Along With Transaction
+*/
+
+BEGIN TRANSACTION
+INSERT INTO RegionWsieSales
+VALUES('SouthIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+INSERT INTO RegionWsieSales
+VALUES('NorthIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+
+SELECT * FROM RegionWsieSales
+
+BEGIN TRY
+	BEGIN TRAN 
+	INSERT INTO RegionWsieSales
+	VALUES('EastIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('WestIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('SouthIndia',7251555.6473,2259797.9767,'djakscn	wqeo8idcuhn',8574048.7082)
+
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF @@TRANCOUNT>0
+	BEGIN 
+		ROLLBACK TRAN
+
+		THROW;
+	END
+	ELSE
+	BEGIN 
+		COMMIT TRAN
+	END
+
+END CATCH
+
+
+BEGIN TRY
+	BEGIN TRAN 
+	INSERT INTO RegionWsieSales
+	VALUES('EastIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('WestIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('SouthIndia',7251555.6473,2259797.9767,'djakscn	wqeo8idcuhn',8574048.7082)
+
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF @@ERROR>0
+	BEGIN 
+		ROLLBACK TRAN
+		
+		THROW;
+	END
+	ELSE
+	BEGIN 
+		COMMIT TRAN
+	END
+
+END CATCH
+
+BEGIN TRY
+	BEGIN TRAN 
+	INSERT INTO RegionWsieSales
+	VALUES('EastIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('WestIndia',7251555.6473,2259797.9767,706187.0115,8574048.7082)
+	INSERT INTO RegionWsieSales
+	VALUES('SouthIndia',7251555.6473,2259797.9767,'djakscn	wqeo8idcuhn',8574048.7082)
+
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF XACT_STATE()=-1
+	BEGIN 
+		ROLLBACK TRAN
+		INSERT INTO SPLog(SPName,ErrorNumber,ErrorState,ErrorSeverity,ErrorLine,ErrorMessage)
+		SELECT ERROR_PROCEDURE() AS ErrorProcedure,		
+		ERROR_NUMBER() AS ErrorNumber,
+		ERROR_STATE() AS ErrorState,
+		ERROR_SEVERITY() AS ErrorSeverity,
+		ERROR_LINE() AS ErrorLine,
+		ERROR_MESSAGE() AS ErrorMessage;
+
+		THROW;
+	END
+	IF XACT_STATE()=1
+	BEGIN 
+		COMMIT TRAN
+	END
+
+END CATCH
+
+CREATE TABLE SPLog
+(
+LogID INT IDENTITY,
+SPName VARCHAR(100),
+ErrorNumber INT,
+ErrorState VARCHAR(100),
+ErrorSeverity INT,
+ErrorLine INT,
+ErrorMessage NVARCHAR(MAX)
+)
+
+
+BEGIN TRY
+	SELECT 1/0
+END TRY
+BEGIN CATCH
+	SELECT ERROR_LINE()  As ErrorLine,
+		   ERROR_MESSAGE() As ErrorMessage,
+		   ERROR_NUMBER() As ErrorNumber,
+		   ERROR_PROCEDURE() As ErrorSP,
+		   ERROR_SEVERITY() As ErrorSeverity,
+		   ERROR_STATE () As ErrorState
+
+END CATCH
+
+
+BEGIN TRY
+	SELECT 1/0
+END TRY
+BEGIN CATCH
+	DECLARE @ErrorMessage NVARCHAR(2048),
+			@ErrorSeverity INT,
+			@ErrorState INT
+	SELECT
+	@ErrorMessage =ERROR_MESSAGE(),
+	@ErrorSeverity =ERROR_SEVERITY(),
+	@ErrorState =ERROR_STATE()
+--RAISERROR(@ErrorMessage,@ErrorSeverity,@ErrorState)
+RAISERROR('YoU Can Not Divide the Zero',16,1)
+END CATCH
+
+
+BEGIN TRY
+	SELECT 1/0
+END TRY
+BEGIN CATCH
+THROW;
+END CATCH
+
+
+SELECT @@ERROR=0
+SELECT @@TRANCOUNT
+SELECT @@VERSION
+
+
+CREATE TABLE #DemoTransactionWithException
+(
+ID INT,
+Nmaes VARCHAR(10)
+)
+
+
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES(1,'KSFHKSFC')
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES(2,'CBSDJAK')
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES(3,'WEIRYEW')
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES(4,'UQROIEQ')
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES('UQROIEQWPYR',5)
+
+SELECT * FROM #DemoTransactionWithException
+
+BEGIN TRY
+	BEGIN TRAN InsertData
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES(1,'KSFHKSFC')
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES(2,'CBSDJAK')
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES(3,'WEIRYEW')
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES(4,'UQROIEQ')
+INSERT INTO #DemoTransactionWithException(ID,Nmaes)
+VALUES(5,'UQROIEQ')
+
+COMMIT TRAN InsertData
+END TRY
+BEGIN CATCH
+	IF(@@ERROR>1)
+	ROLLBACK TRAN InsertData
+	ELSE
+	COMMIT TRAN InsertData
+
+END CATCH

@@ -1,0 +1,25 @@
+About Merge Statement In SQL Server?
+	Merge Statement Can be Used to Perform 3 DML Operations In Single Staement
+	
+Syntax:
+	Syntax:	
+		MERGE INTO <TargetTableName> <AliasName>
+		USING <SourceTableName> <AliasName>
+		ON <Condition> <TargetColumnName=SourceColumnName> 
+		WEHN MATCHED
+		THEN
+		<DML Operation>
+		WHEN NOT MATCHED BY TARGET
+		THEN
+		<DML Operation>
+		WHEN NOT MATCHED BY SOURCE
+		THEN
+		<DML Opeartion>;
+		
+
+
+
+	1) Hard Delete
+		Delete the Record From Table
+	2) Soft Delete
+		Insted Of Delete the Record From Table We Can Hide The Record With the Help Any Flag Field

@@ -1,0 +1,22 @@
+System Configurations
+	Laptop/DeskTop
+	Minumum 4 GB Ram
+	Minimum 50 to 10 GB HDD/SSD
+	OS Winodws10 Or Windows11
+
+Required Softwares
+SQL Server 2019
+	SQL Server
+	SSMS(SQL Server Managemnt Studio)
+	
+While Installing 
+	A) DataBase Engine Service
+	B) Reporting Service
+	C) Integration Service
+	D) Analysis Service
+	
+Software Download Link
+https://www.microsoft.com/en-us/evalcenter/download-sql-server-2019
+
+SSMS Download Link
+https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16

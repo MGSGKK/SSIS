@@ -1,0 +1,17 @@
+What Is SQL ?
+	SQL Means Structured Query Langugae. Means its Set Of Rules Invented By ANSI(American National Science Institue).
+	THis SQL Language Can be Used to Interact With RDBMS Servers
+
+	A) SQL Server
+		T-SQL (Transact SQL)
+	B) Oracle
+		PL-SQL (Procedural SQL)
+	C) DB2
+	D) MySQL 
+	E) Postgrace SQL 
+		Postgrace SQL 
+	F) Teradata
+
+
+	
+	

@@ -1,0 +1,4 @@
+About Pivoting In SQL Server?
+	Pivot In SQL Server means Pivot Can Convert the Rows As Columns.
+	
+	

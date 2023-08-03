@@ -1,0 +1,68 @@
+Types of Window functions/Window Analytical Functions
+	Aggregate Window Functions
+		SUM(), MAX(), MIN(), AVG(), COUNT()
+	Ranking Window Functions
+		RANK(), DENSE_RANK(), ROW_NUMBER(), NTILE()
+	Value Window Functions
+		LAG(), LEAD(), FIRST_VALUE(), LAST_VALUE()
+SYntax:
+	window_function ( [ ALL ] expression ) 
+	OVER ( [ PARTITION BY partition_list ] [ ORDER BY order_list] )
+
+--------------------Ranking Functions-------------------------
+Aggregate Window Functions
+	Aggregate Window Function is Used to Perform Data Analytics Operations.
+	
+	FOr Exmpale If You want to get Running Total/ Cumulative Total City Wise
+	
+Rank Window Functions
+	These Rank Function Are Used to Define Ranks.
+		We have 4 Types Of Ranks 
+		1) ROW_NUMBER
+		2) Rank
+		3) DENSE_RANK
+		4) NTILE
+		
+		ROW_NUMBER:
+			Row_NUmber Function Will Generate Sequence Number for each row WithIn Partition
+		
+		SynTax
+		Row_NUmber()OVER(Partition By Caluse Order By Caluse)
+		
+		Rank:
+		The RANK() ranking function returns a unique rank number for each distinct row within the partition according to a specified column value
+		
+		SynTax
+		RANK()OVER(Partition By Caluse Order By Caluse)
+		
+		DENSE_RANK:
+		The DENSE_RANK() ranking window function is similar to the RANK() function by generating a unique rank number for each distinct row within the partition according to a specified column value
+		
+		SynTax
+		DENSE_RANK()OVER(Partition By Caluse Order By Caluse)
+		
+		
+		NTILE:
+		The NTILE(N) ranking window function is used to distribute the rows in the rows set into a specified number of groups, providing each row in the row set with a unique group number
+		SynTax
+		NTILE(<Number>)OVER(Partition By Caluse Order By Caluse)		
+		
+		
+Examlpe DataSEt
+
+CREATE TABLE StudentScore
+(
+  Student_ID INT PRIMARY KEY,
+  Student_Name NVARCHAR (50),
+  Student_Score INT
+) 
+
+GO
+
+INSERT INTO StudentScore VALUES (1,'Ali', 978)
+INSERT INTO StudentScore VALUES (2,'Zaid', 770)
+INSERT INTO StudentScore VALUES (3,'Mohd', 1140)
+INSERT INTO StudentScore VALUES (4,'Jack', 770)
+INSERT INTO StudentScore VALUES (5,'John', 1240)
+INSERT INTO StudentScore VALUES (6,'Mike', 1140)
+INSERT INTO StudentScore VALUES (7,'Goerge', 885)

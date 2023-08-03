@@ -1,0 +1,88 @@
+Types Of Execution Plans in SQL Server?
+	The SQL Server Execution Plan (Query Plan) Is a Set of Instructions that Describes Which Process Steps are Performed while a QUery is Executed by the Database Engine.
+	1) Actual Execution Plans
+		Actul Means It Will Show the Previous Run Execution Plan
+	2) Estimated Execution Plans
+		It Will Always Generate New Exceution Plan When You Execute the Stored Proc/InLine Querys.
+Table Scan
+		Table Scan Measn If Table Does Not Have Proper index the Table Scan Will Perform.
+Index Scan 
+	Index Scan Means It Will Scan the Data In Entire Index Page.
+Index Seek
+	Index Seek Means It Will Dirctly Go to The Index Page And It Pick The Record From Leaf Node.
+Table
+Index 
+B-Tree
+	
+WHat Is Execution Plan In SQL Server
+
+Clustered Index
+	Simply Data Will Sort In Table
+Non Clustered
+	It Will Store the Data Separately
+	B-Tree
+	
+Table Data it Will Store under Index Page
+		Each Index Page -8KB
+	
+Index Scan means 
+	That Entire index Page it Will Scan
+	
+Index Seek Means
+	Instead of Entire Index Page it Will Dorectly Pick the Record from Index Page
+	
+	
+Index Fragmentation
+	if You Perform any DML (INSERT, Update,DELETE) Operation on Indexed Table By the Time It Can hold Some White SPace.
+
+Name
+Sandeep Kumar
+Update As Sandeep
+
+Based On Frgmnetation Percentage We have to Perform 2 Operations Respectively
+	Index Rebuild
+	Index Reorganize
+	
+If Index Fragmentation Is LessThan 30 and GretarThan 10 and PageCount Is Gretarthan 100 then We can Perform Index Reorganize
+
+If Index Fragmentation Is  GretarThan 30 and Page Count GretarThan 100 We can Perform Index Rebuild
+
+Physical Operation: These are the operators that implement the operation as directed by the logical operators. All the physical operators are usually object which perform an operation. Some examples are Clustered Index Scan, Index Seek etc.
+
+Logical Operation: These operators describe the actual algebraic operation that is used to process the query. Examples are Right Anti Semi Join, Hash Join etc.
+
+Actual Execution Mode: This is the actual execution mode that is used by the processing engine to execute the query. Examples – Row and Batch
+
+Estimated Execution Mode: This is similar to Actual Execution Mode but shows the estimated value
+
+Storage: This tells us how the query optimizer will store the results that are being extracted by the query
+Number of Rows Read: This returns the total number of records that are being read by the operator from the table index
+
+Actual Number of Rows: This tells us the total number of records that have been returned based on the condition in the WHERE clause
+Actual Number of Batches: If the execution mode for the query is a batch, then it will list the number of batches being executed to fetch the results
+
+Estimated I/O Cost: This tells us the cost of the input/output operations of the result set
+
+Estimated Operator Cost: This is not an actual cost but relative information with respect to the other operators in the execution plan
+
+Estimated CPU Cost: The cost that the CPU will incur in order to process the operation
+
+Estimated Subtree Cost: The cost of the execution tree that is being currently read from right-to-left and top-to-bottom
+
+Number of Executions: This tells us about the number of executions that the optimizer can handle in a single batch
+
+Estimated Number of Executions: This is also similar to the Number of Executions just the estimated value
+
+Estimated Number of Rows: The number of rows that the optimizer thinks will be returned by the operator
+
+Estimated Number of Rows to be Read: The number of rows that the optimizer thinks will be read by the operator
+
+Estimated Row Size: The storage size each row in the operator
+
+Actual Rebinds: This tells us about how many times the reevaluation of the object must be done in order to process the operator
+
+Actual Rewinds: This property tells us if there were any changes in the correlated values for the object that is being processed
+
+Ordered: This property determines if the dataset on which the operation is to be performed in a sorted state or not
+
+Node ID: It is the automatic assignment of a number in the order in which the operator is called in the execution plan reading from right-to-left and top-to-bottom

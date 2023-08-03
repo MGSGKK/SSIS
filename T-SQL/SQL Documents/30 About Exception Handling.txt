@@ -1,0 +1,102 @@
+---------------------------Exception Handling------------------------
+An error condition during a program execution is called an exception and the mechanism for resolving such an exception is known as exception handling.
+	
+	Syntax:
+	BEGIN TRY  
+     --code to try 
+	END TRY  
+	BEGIN CATCH  
+	--code to run if an error occurs
+	--is generated in try
+	END CATCH
+	
+	Example:
+	BEGIN TRY
+	-- Generate a divide-by-zero error  
+  SELECT
+    1 / 0 AS Error;
+	END TRY
+	BEGIN CATCH
+	SELECT
+		ERROR_NUMBER() AS ErrorNumber,
+		ERROR_STATE() AS ErrorState,
+		ERROR_SEVERITY() AS ErrorSeverity,
+		ERROR_PROCEDURE() AS ErrorProcedure,
+		ERROR_LINE() AS ErrorLine,
+		ERROR_MESSAGE() AS ErrorMessage;
+	END CATCH;
+	GO
+	
+	
+Raise Error:
+	RAISERROR is a SQL Server error handling statement that generates an error message and initiates error processing. RAISERROR can either reference a user-defined message that is stored in the sys.sysmessages catalog view or it can build a message dynamically.
+	
+	Why Use RAISERROR for SQL Server Error Handling?
+	There are two primary reasons for choosing RAISERROR over SQL Server-generated error handling:
+
+	The RAISERROR messages are customizable with regard to level of severity and state
+	They can be written in natural language that is easy to understand
+Throw:
+		The THROW statement is introduced with SQL Server 2012. Throw is used to raise an exception and transfers execution to a CATCH block in SQL Server.
+	BEGIN TRY
+
+	-- write your SQL statements.
+
+	DECLARE @a INT ='test'
+
+	END TRY
+	
+	BEGIN CATCH
+	
+	THROW;
+	
+	END CATCH
+
+	
+	
+Differences between RAISERROR and THROW
+Throw
+	THROW is introduced with SQL Server 2012. It is very simple and easy to use.
+	We can re-throw the original exception that was caught with in the TRY...CATCH block. To do this just specify the THROW without a parameter.
+	
+	Example:
+ 	BEGINTRY
+	DECLARE @result INT
+	--Generate casting error
+	SET @result = 'This is test'
+	ENDTRY
+	BEGINCATCH
+	THROW
+	ENDCATCH
+	
+	Result
+	Msg 245,Level 16,State 1, Line 16
+	Conversion failed when converting the varchar value'This is test'to data type int.
+	
+	
+Raise Error:
+	RAISE ERROR was introduced with SQL Server 2005.
+	We cannot re-throw the original exception that is invoked the CATCH block. It always raises a new exception and the result, original exception is lost.
+	
+	Example:
+	BEGIN TRY
+	DECLARE @result INT
+	--Generate casting error
+	SET @result= 'This is test'
+	END TRY
+	BEGINCATCH
+	DECLARE @ErrorMessageNVARCHAR(2048),
+			@ErrorSeverity INT,
+			@ErrorState INT
+	SELECT
+	@ErrorMessage =ERROR_MESSAGE(),
+	@ErrorSeverity =ERROR_SEVERITY(),
+	@ErrorState =ERROR_STATE()
+	
+	RAISERROR (@ErrorMessage, @ErrorSeverity,@ErrorState)
+	END CATCH 
+	
+	Result
+	
+	Msg 50000, Level 16, State 1, Line 16
+	Conversion failed when converting the varchar value 'This is test' to data type int.

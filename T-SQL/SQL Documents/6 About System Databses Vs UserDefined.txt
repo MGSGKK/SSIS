@@ -1,0 +1,15 @@
+Types Of Databases In SQL Server
+	 We Haev 2 Types Of Databases
+		A) System Databses
+			We Have 4 Type Of System Databases
+				I) Master
+					Its A heart for the Server . The Entire Server Functionality Can be Handled by Master.
+				II) Model
+					Model DB Act Like As Xerox Copy . When We Create New Databases So it Will Take A Copy Of Database Structure and Restore With Which Name You Have Given.
+				III) TempDb
+					This TempDB Can Hold Temporary Tables Information Which are Created By Users oresle Created by System.
+				IV) MSDB
+					It Can Store All the Jobs Information and Also Deployed Individual SSIS Packages Can Store in MSDB.
+		B) User Defined Database
+			Which are the Databases Created By Users
+		

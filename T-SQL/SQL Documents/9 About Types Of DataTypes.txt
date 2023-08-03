@@ -1,0 +1,37 @@
+Types Of DataTYpes In SQL Server
+All the DataTYpes Are Categrised In Below
+	Exact numerics
+		1) TinyInt
+		2) Small Int
+		3) Int
+		4) Big Int
+		5) BIT
+		6) Numaric 
+		7) Money
+		8) Decimal
+		9) Small Money
+	Approximate numerics
+		1) FLoat
+		2) Real
+	Character strings
+		1) Char
+		2) Varchar (8000)
+		3) Text 2GB
+	Unicode character strings
+		1) NCHAR
+		2) NVARchar
+		3) NTEXT
+	Binary strings
+		1) IMage
+		2) Binary
+		3) VarBinary
+	Date and time
+		1) Date
+		2) TIme
+		3) DateTime
+		4) DateTime2
+		5) Small DateTime
+		6) DateTime OffSet
+	Other data types
+		1) UniqueIdentifier
+		

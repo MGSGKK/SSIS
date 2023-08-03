@@ -1,0 +1,15 @@
+What is DBMS?
+	Database Management System (DBMS) is a software for storing and retrieving users’ data while considering appropriate security measures. It consists of a group of programs which manipulate the database. The DBMS accepts the request for data from an application and instructs the operating system to provide the specific data. In large systems, a DBMS helps users and other third-party software to store and retrieve data.
+
+	DBMS allows users to create their own databases as per their requirement. The term “DBMS” includes the user of the database and other application programs. It provides an interface between the data and the software application.	
+Types Of DBMS?
+	1) Centralized Database
+	2) Distributed Database
+	3) Relational Database (RDBMS)
+	4) NoSQL Database
+	5) Cloud Database
+	6) Object-oriented Databases
+	7) Hierarchical Databases
+	8) Network Databases
+	9) Operational Database
+	10) Enterprise Database

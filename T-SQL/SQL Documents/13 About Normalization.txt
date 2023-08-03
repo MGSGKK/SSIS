@@ -1,0 +1,35 @@
+Normalization:
+	Normalization Means Eleminating Data Duplication and Creat the Dependency between tables. Thats Called Normalization.We Have 7 Different types of Normalisations Available.
+Database Normal Forms
+1NF (First Normal Form)
+2NF (Second Normal Form)
+3NF (Third Normal Form)
+4NF (Fourth Normal Form)
+BCNF (Boyce-Codd Normal Form)
+5NF (Fifth Normal Form)
+6NF (Sixth Normal Form)
+
+1NF:
+	Each table cell should contain a single value.
+	Each record needs to be unique.
+2NF:
+	Rule 1- Be in 1NF
+	Rule 2- Single Column Primary Key that does not functionally dependant on any subset of candidate key relation
+3NF:
+	Rule 1- Be in 2NF
+	Rule 2- Has no transitive functional dependencies
+
+	
+Note:
+	Every RDMBS System Like OLTP Systems It Should be In Upto 3rd/4Th Normalization.
+	
+	
+Some Key Concepts
+	What is a KEY in SQL?
+	A KEY in SQL is a value used to identify records in a table uniquely. An SQL KEY is a single column or combination of multiple columns used to uniquely identify rows or tuples in the table. SQL Key is used to identify duplicate information, and it also helps establish a relationship between multiple tables in the database.
+
+Note: Columns in a table that are NOT used to identify a record uniquely are called non-key columns.
+
+What is Composite Key?
+	A composite key is a primary key composed of multiple columns used to identify a record uniquely
+	

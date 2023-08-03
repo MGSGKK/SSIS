@@ -1,0 +1,50 @@
+Types Of SubLanguages In SQL?
+We Have Totally 5 Types Of SubLanguages.
+	A) DDL
+		Means Data Defination Laguage. These Commands Can be Used to Create /Alter/Drop the Objects. We Have 4 Types Of COmmands
+			A) CREATE
+			B) ALTER
+			C) DROP
+			D) TRUNCATE
+	B) DML
+		Data Manipulation Laguage. These COmmands Can Be Used to Work With The Tables Only.
+			A) INSERT
+				Syntax:
+				INSERT INTO <TableName>(Column1,Column2,etc..)
+				VALUES(Value1,Valu2,etc...)
+			B) UPDATE
+				Syntax:
+					UPDATE <TableName>
+					SET <ColumnName>=<Value>,
+						<ColumnName2>=<Value>,etc..
+					WHERE <Condition>
+					
+			C) DELETE
+				Syntax:
+					DELETE FROM <TableName>
+					WHERE <Condition>
+	C) DQL
+		Data Query Language.It Can Have Only One Command. Its ReadOnly Command
+			A) SELECT
+		Basic Selct Query Syntax:
+			SELECT <Column1>,<Column2>,<Column3>,etc..
+			FROM <TableName>
+			WHERE <Condition>
+			GROUP BY <Clause>
+			HAVING <Clause>
+			ORDER BY <Clause>
+	D) TCL
+		Transaction Control Language. These Commands Can be Used to Perform the Transactions. We Have 3 Commands
+			A) COMMIT
+			B) ROLLBACK
+			C) SAVE POINT
+	E) DCL
+		Data Control Language. Which Can Be Used to Provide Or Remove the Acceses to the Users. It Can Have 3 Commands
+			A) GRANT
+			B) Revoke
+			C) Deny
+
+	
+What is Object
+	Object Means In Server Either Table Or Stored Procedure,Function, View, Trigger Any thing We Can Call it As A Object
+	

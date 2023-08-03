@@ -1,0 +1,30 @@
+Temp Tables & Table Variables In SQL Server
+	Temp Tables
+		These Temporary Tables Are Used to Hold the Data For Temporary Purpose
+		With Help Of Create Table With #,##
+		1) Local
+		2) Global
+		We Can Use This Stored Proceudres to Implement The Complex Logic
+		Temprory Tables are automatically Will Destroy When Created Session Is Closed.
+		Local Temporary Table Is Available For that Particular Session Only
+		Global Will Be Available For all the Sessions Until the Created Session Closed.
+		We Can Create the Indexes
+		
+	Table Variables
+		Table Variables are Used to Hold The Data For Temporary Puppose Only
+		With The DECLARE Statement We Can Create
+
+
+Temp table Vs Table Variables
+			1) Temp Tables Are Physically Available WHere as Table Variables are Not Available Physically
+			2) Temp tables are Automatically Drop When the Created Session Was Closed
+			Where As Table Variables Automatically Dropped When the SQLBatch Execution Done.
+			3) Temp table Are Store Data On Disk But Table Variables Can Store Data In Memory Upto Particular Level 
+		
+If The Dataset Size Is Huge By the Time We Can Use Temp Tabels
+		Dataset Size Is Small Then We Can Use Table Variables.
+		
+Locking It Should Not Happen (Main Table)
+Code Readbility Is High
+You Haev FlexiBility To Creat Indexes On TempTables
+

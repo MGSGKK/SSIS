@@ -1,0 +1,26 @@
+About Cursors In SQL Server?
+	A Cursor Is Set of SQL Satements Which Can be Used to Process the Records are Record By Record.
+	We Have Different Types Of Cursors in SQL Server.
+		A) Static
+			A Static Cursor Populated the Result Set At the Time Of Cursor Creation and the query result is Cached for the lifetime of the Cursor.A Static Cursor Can Move Forward Or BackWord Direction.A Static Cursor Is Slower and use More Memory. So In Static Cursor There Is No Update, No Delete And No Insert 
+		B) Dynamic
+			Dynamic Cursor Allows You to see the Data Updatetion,Deletion and Insertion in the Data Source While the Cursor is Open. Dynamci Cursors are Sensitive to any changes to the Data Sources and Supports Update,Delete and insert Operation.
+		C) Forward Only
+			A FOr Ward Only Cursor Is Fastest Cursor Compartively All Other Cursor But It DoesNot Support BackWord Direction.You Can Update,Delete and Inser tUsig Forward only Cursor.
+				I) KeySet
+				II) FOrward_only Static 
+				III) Fast_Forward
+		D) KeySet Driven
+			KeySet Driven Cursor is Controled by a set of Unique Identifiers as the Key in KeySet.The KeySet Depends on All the Rows that Qualified the Select Statement at the time of the Cursor Was Opened.In KeySet Cursor We Can Perform Update , Delete Operations As Well.
+	Cursor Life Cycle
+	A) Declaring Cursor
+	B) Opening Cursor
+	C) Fetching Cursor
+	D) Closing Cursor
+	E) Deallocating Cursor
+	
+	Synatx:
+		DECLARE CursorName
+		[Forward_only|Scroll\Static|KeySet|Dynamic|Fast_Forward] 
+		FOR SELECT <Statement>
+		FOR DML Satments OF ColumNnames

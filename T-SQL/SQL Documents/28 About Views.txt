@@ -1,0 +1,81 @@
+What Is Views in SQL Server
+	A View Is Virtual Table. It Does Not Store The Data Instead It Will Store Only Query.Views Will Not Accept the Input/OutPut Parameters
+We Have 2 Types Of View
+	1) Simple View
+	2) Complex View
+
+SYntax:
+	CREATE /ALTER VIEW <SchemaName>.<ViewName>
+	AS
+	SELECT <Statements>
+
+	SImple View Means If You Write Select Query Based On Single Table WIth Out Using Any Aggregation Or Complex Logic 
+
+	Complex View Menans If You Write Select Query Using Joins Or Aggregation Or Use Comple Logic 
+
+	Uses:
+	Views are Mostly Used to Restrict User Usage On Table.
+	Improve the Query Readability.
+
+
+SELECT * FROM [INFORMATION_SCHEMA].[COLUMNS]
+WHERE TABLE_NAME='Product'
+
+SELECT * FROM [INFORMATION_SCHEMA].[TABLES]
+WHERE TABLE_TYPE='BASE TABLE'
+AND TABLE_SCHEMA='Production'
+
+SELECT * FROM [INFORMATION_SCHEMA].[ROUTINES]
+WHERE ROUTINE_TYPE='PROCEDURE'
+
+SELECT * FROM [INFORMATION_SCHEMA].[VIEWS]
+SELECT * FROM [INFORMATION_SCHEMA].[REFERENTIAL_CONSTRAINTS]
+WHERE CONSTRAINT_SCHEMASales
+
+-----------------------------------With Schema Binding----------------------
+    If You Use With Schema Bind Option In Our view We Can't Modify Underlining Objects.
+    
+CREATE VIEW Sales.vOrders
+   WITH SCHEMABINDING
+   AS  
+      SELECT SUM(UnitPrice*OrderQty*(1.00-UnitPriceDiscount)) AS Revenue,
+         OrderDate, ProductID, COUNT_BIG(*) AS COUNT
+      FROM Sales.SalesOrderDetail AS od, Sales.SalesOrderHeader AS o
+      WHERE od.SalesOrderID = o.SalesOrderID
+      GROUP BY OrderDate, ProductID;
+      
+ 
+
+
+----------INdexed View Or Materialsed Views----------------------------
+
+	If We Create UNIQUE CLUSTERED INDEX On View That Will Become a Indexed View Or Materialsed View.
+
+We Have Some Limitations to Create Indexed View
+	1) Indexed views must be created using the SCHEMABINDING option. 
+	2) Indexed views may only select columns from base tables. They may not retrieve values from other views. The tables must be in the same database as the view and must have the same owner.
+	3) The columns in the view must be explicitly listed in the view's query. You cannot use the asterisk character to specify that you wish to retrieve all columns from a table, so queries such as "SELECT * FROM MyTable" are not permitted.
+	4) We Can Use COUNT_BIG FUnction , Without This Fucntion We Can Not Create Indexed View.
+
+CREATE VIEW Sales.vOrders
+   WITH SCHEMABINDING
+   AS  
+      SELECT SUM(UnitPrice*OrderQty*(1.00-UnitPriceDiscount)) AS Revenue,
+         OrderDate, ProductID, COUNT_BIG(*) AS COUNT
+      FROM Sales.SalesOrderDetail AS od, Sales.SalesOrderHeader AS o
+      WHERE od.SalesOrderID = o.SalesOrderID
+      GROUP BY OrderDate, ProductID;
+
+CREATE UNIQUE CLUSTERED INDEX IDX_V1
+   ON Sales.vOrders (OrderDate, ProductID);
+
+
+----------------------------------With Check option ------------------------
+Views can be created in SQL Server WITH CHECK OPTION.
+WITH CHECK OPTION will make sure that all INSERT and UPDATE statements executed against the view meet the restrictions in the WHERE clause, and that the modified data in the view remains visible after INSERT and UPDATE statements.
+
+CREATE VIEW view_1
+AS
+SELECT * FROM table_1
+WHERE data like 'b%'
+WITH CHECK OPTION

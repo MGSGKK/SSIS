@@ -1,0 +1,13 @@
+About System Versioned Tables Or Temporal Tables ?
+	System Versioend Can Allow us to Tranck the Changes on Table and Will Maintain the History.
+	We Can use these Temporal Tables for Below
+	A) Auditing
+	B) Rebiulding The Data InCase Of Inadvertent Changes
+	C) Projecting and Reporting for Historical Analysis
+	D) Protecting the Data In Case Of Accidental Data Loss
+	
+	Limitations
+		A) Primary Must be Defined
+		B) 2 DateTime2 Datatype Columns Required.
+		C) You Can Not Perform DML operation On Temporal Tables.
+

@@ -1,0 +1,11 @@
+RDBMS 
+	Relational Database Management System
+		In RDBMS , We Can Create Multiple Tables , In table Tables We Can Create Columns
+		Between these Multiple Tables We Can Create Relation Ships Between All the Tables
+RDBMS
+	A) SQL Server
+	B) Oracle
+	C) DB2
+	D) MySQL 
+	E) Postgrace SQL 
+	F) Teradata.

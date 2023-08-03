@@ -1,0 +1,25 @@
+About Index Fragmentation In SQL Server?
+	Index Fragmentation Means its Kind of White Space. When You Perform DML Operations On Table If That Table is Having Indexes By the Time This Index Fragmentation Will Occur.
+	
+SELECT S.name as 'Schema',
+T.name as 'Table',
+I.name as 'Index',
+DDIPS.avg_fragmentation_in_percent,
+DDIPS.page_count
+FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, NULL) AS DDIPS
+INNER JOIN sys.tables T on T.object_id = DDIPS.object_id
+INNER JOIN sys.schemas S on T.schema_id = S.schema_id
+INNER JOIN sys.indexes I ON I.object_id = DDIPS.object_id
+AND DDIPS.index_id = I.index_id
+WHERE DDIPS.database_id = DB_ID()
+and I.name is not null
+AND DDIPS.avg_fragmentation_in_percent > 0
+ORDER BY DDIPS.avg_fragmentation_in_percent desc
+
+How to Remove Index Fragmentation In SQL Server
+	We Have 2 Methods to Remove Fragmentation Based On Fragmentation Percentage And Index Page Count
+	
+	A) Reorganize
+		When Index Page Count Is Morethan 100 and Fragmentation Percentage Is More than 10 and Lessthan 30 We Can Use ReOrganize
+	B) ReBuild
+		When Index Page Count Is Morethan 100 and Fragmentation Percentage Is More than 30 We Can Use ReBuild
