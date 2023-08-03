@@ -1,0 +1,2 @@
+About Percentage Sampling Transformation in SSIS?
+	Percentage Sampling Transforamtion Can be Used to Get the % Of Sample Data From Source System.Whichis Useful When Your Source System Data Is Huge and that to While Developing If You Want any Sample Data We Can  Use this Transformation.

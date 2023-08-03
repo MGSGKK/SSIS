@@ -1,0 +1,4 @@
+About Aggreagte Transormation?
+	Aggregate Transormation Can be Used to Perform the Aggregations Such as SUM,MAX ,MIN,AVG,Count and Count Distinct etc..
+	With Basic Mode We Can Perform Only One Level Aggreation Where As With the Help of Advanced Mode We Can Perform No Of Levels Aggreation.
+	

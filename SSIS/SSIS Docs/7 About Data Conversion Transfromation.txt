@@ -1,0 +1,8 @@
+About DataConversion Transformation?
+	Data Conversion Transformation Can Be Used to Convert the Data Types From One to Another.
+	
+Suppotred Data Types In SSIS.
+https://wiki.melissadata.com/index.php?title=FAQ:SSIS:Data_Type_Conversions
+Excel FIle.
+SQL Server
+

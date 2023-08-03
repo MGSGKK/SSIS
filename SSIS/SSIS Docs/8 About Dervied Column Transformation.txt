@@ -1,0 +1,4 @@
+About Dervied Column Transformtion in SSIS?
+	Dervied Column Transformtion Can be Used to Produce the New Columns Based on Exsiting Column Or Based On Variable And Parameters.
+	And Also We Have Flexibility to Convert the Data Types.
+	

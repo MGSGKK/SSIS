@@ -1,0 +1,2 @@
+About Pivot Transformation in SSIS?
+	Pivot Transformation in SSIS Can be Used to Convert the Rows As Column.
