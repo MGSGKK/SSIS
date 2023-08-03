@@ -1,0 +1,17 @@
+About Merge Join Transformation In SSIS?
+	Merge Join Transformation Is used to Perform the Joins Inside SSIS.
+	It Will Support 3 Types Of Joins
+		A) Inner Join
+		B) Right Outer Join
+		C) Full Outer Join 
+		
+		Note: 
+			1) The Input Data It Must be Sorted
+			2) It Will Allow Only 2 Input Datasets
+
+SQL Server 
+		Products
+		ProductID , ProductName
+Oracle
+	SalesInformation
+		Productid

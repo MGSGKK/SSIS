@@ -1,0 +1,2 @@
+About Export Column Transfomation in SSIS?
+	Export Column Transfomation in SSIS is UseFul to Export Images , Binary File or Any Large Documents from SQL Server to File System.Export Column Transforamtion Reads Path Or Location Present In SOurce Column and Transfer the to That Path.

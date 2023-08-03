@@ -1,0 +1,11 @@
+About RowCount Transformation In SSIS?
+	RowCount Transformation Can be Used to Get the No of Recrods Count Which are Passing Through the Pipeline.
+	It Will get the No of Recrods Count And It Will Keep That Value In Variable.
+	
+	Log 
+	Entry
+	Package Name
+	Execition STartTime
+	Exec End TIme
+	Insered Recrod Count
+

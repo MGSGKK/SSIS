@@ -1,0 +1,39 @@
+About Character Map Transforamtion In SSIS?
+	Character Map Transforamtion Can be Used to Convert the Column Values From Upper Case to Lower Case and Lower to Upper Case and Apply Hiragana ,Katakana etcc..
+	
+About Copy Column Transforamtion In SSIS?
+	Copy Column Transformation Can be Used to Duplicate the Existing Column.
+	
+	
+About Percentage Sampling Transformation in SSIS?
+	Percentage Sampling Transforamtion Can be Used to Get the % Of Sample Data From Source System.Whichis Useful When Your Source System Data Is Huge and that to While Developing If You Want any Sample Data We Can  Use this Transformation.
+	
+About RowSampling Transformation in SSIS
+	RowSampling Transformation can be Used to get the Nof Of Rows From the Source System.
+	
+About Pivot Transformation in SSIS?
+	Pivot Transformation in SSIS Can be Used to Convert the Rows As Column.
+
+About Export Column Transfomation in SSIS?
+	Export Column Transfomation in SSIS is UseFul to Export Images , Binary File or Any Large Documents from SQL Server to File System.Export Column Transforamtion Reads Path Or Location Present In SOurce Column and Transfer the to That Path.
+	
+About Import Column Transfomation in SSIS?
+	Export Column Transfomation in SSIS is UseFul to Import Images , Binary File or Any Large Documents from File System Text File to SQL Server .
+	
+About Fuzzy Lookup Transformation In SSIS?
+	The Fuzzy Lookup Transformation in SSIS Is Used to Replace the Wrongly Typed Words with Correct Words.The Fuzzy Lookup Transfomation in SSIS Uses the Fuzzy Matching to Find One Or More Close Matches in the Reference Table and Replace the Source Data With Reference Data.
+	It Will Support Only OLEDB Connections
+	and Also It Will Support DT_STR and DT_WSTR
+	
+	
+About Fuzzy Grouping In SSIS?
+	The Fuzzy Grouping Transformation in SSIS Is Used to Replace the Wrongly Typed Words with Correct Words.
+	
+About Term Extraction in SSIS?
+	The Term Extraction In SSIS first Extracts Terms from the Text Present in the Source data and then Writes the Extracted Terms to a OutPut.
+	
+About UnPivot Transformaion in SSIS?
+	UnPivot Transfomation Can be Used to Convert the Columns As Rows 
+	
+	
+	

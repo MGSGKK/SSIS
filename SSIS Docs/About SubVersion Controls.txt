@@ -1,0 +1,34 @@
+About SubVersion Controls?
+	SubVersion Controls Means We are Keeping All Our team Code In One Centralized Location. For that We haev Noof Tools Available Like TFS (Team Foundation Server), Tortoise SVN , Azure DevOps, GitHub, BigBucket etc...
+	
+	CheckIn
+		Repository Upload
+	CheckOut
+		Lastest Code Taking From Repository
+	
+	
+	SDLC Process
+		Software Development Life Cycle
+			Agile
+				Per One Month
+					2 Sprints
+				Sprint -15 Days
+					BackLogs
+						User Stories
+							Tasks
+								Analysis -4
+									Actual Time--
+								Initl Development -6
+								SSIS Package Creation-6
+								Objects & SP Creation -8
+								Unit Testng -4
+			Daily Scrum Calls With Scrum Master
+			
+			Dev
+			Test 
+			QA
+			Production
+			
+			WaterFall
+			One Year
+				

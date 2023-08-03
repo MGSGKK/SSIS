@@ -1,0 +1,2 @@
+About Import Column Transfomation in SSIS?
+	Import Column Transfomation in SSIS is UseFul to Import Images , Binary File or Any Large Documents from File System Text File to SQL Server .

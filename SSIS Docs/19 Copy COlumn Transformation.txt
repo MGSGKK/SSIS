@@ -1,0 +1,2 @@
+About Copy Column Transforamtion In SSIS?
+	Copy Column Transformation Can be Used to Duplicate the Existing Column.
