@@ -1,0 +1,3 @@
+About MultiCast Transformation In SSIS?
+	MultiCast Transformation Can be Used to Duplicate the Input Dataset. It Will take One Input Data Set and It Will Give the No Of Duplicate OutPuts.
+	
