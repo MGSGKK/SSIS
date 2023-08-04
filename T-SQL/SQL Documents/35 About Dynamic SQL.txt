@@ -1,5 +1,0 @@
-About Dynamic SQL in SQL Server
-	Dynamic SQL is Programing Technique that allows to Construct sql statements Dynamically during the Runtime.
-	
-	
-	

@@ -1,9 +1,0 @@
-Basic SELECT Query Syntax And Execution Process Steps
-
-SELECT <ColumnName>,<Columnaname>,etc...
-FROM <TableName> AS <AliasName>
-JOIN/LEFT/RIGHT/FULL oUTER <TableName> ON <Columnname>=<Columnname>
-WHERE <Condition>
-GROUP BY Clause
-HAVING Clause
-ORDER BY Clause

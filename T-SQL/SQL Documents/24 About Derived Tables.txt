@@ -1,2 +1,0 @@
-Derived Tables In SQL Server
-	A derived table is a table expression that appears in the FROM clause of a query. You can apply derived tables when the use of column aliases is not possible because another clause is processed by the SQL translator before the alias name is known.

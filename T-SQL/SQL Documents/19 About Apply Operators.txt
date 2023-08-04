@@ -1,6 +1,0 @@
-About Apply Operators in SQL Server?
-	Apply Operators Can be Used to Join the Table Valued Function With Tables. We Can use Apply Operators. We Have 2 Types Of Apply Operators.
-		A) Cross Apply
-			Cross Apply It Is Symentically the Behaviour Is Equal to Inner Join.
-		B) Outer Apply
-			Outer Apply It Is Symentically the Behaviour Is Equal to Left Outer Join.

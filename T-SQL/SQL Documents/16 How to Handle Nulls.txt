@@ -1,9 +1,0 @@
-How to Hanlde Nulls in SQL Server?
-	1) IS NULL
-	2) ISNULL
-		ISNULL Fucntion Can be Used to Replace Nulls With SomeOther Values
-		ISNULL(Expression,<ReplaceVale>)
-	3) COALESCE
-		COALESCE Will Return First Not Null Value 
-		COALESCE(Expression1,Expression2,Expression3.....)
-		
