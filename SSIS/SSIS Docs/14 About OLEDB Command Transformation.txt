@@ -1,3 +1,0 @@
-About OLEDB Command In SSIS?
-	OLEDB Command Tranformation Can be Used to Perfrom Individual DML operation On Table.Its A Kind Of ROw by Row Operation.
-	

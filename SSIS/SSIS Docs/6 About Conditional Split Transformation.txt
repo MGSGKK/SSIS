@@ -1,5 +1,0 @@
-About Conditional Split Transformation In SSIS?
-	Conditional Split Transformation Can be Used to Apply Conditions. So based on Condition it Will Produce OutPuts.
-	So Always It Will Retrun the OutPuts NoOfConditions+ Default OutPut.
-	
-	(ISNULL(Title)?"N/A":Title) == "Mr."

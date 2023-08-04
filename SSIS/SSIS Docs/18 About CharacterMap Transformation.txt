@@ -1,2 +1,0 @@
-About Character Map Transforamtion In SSIS?
-	Character Map Transforamtion Can be Used to Convert the Column Values From Upper Case to Lower Case and Lower to Upper Case and Apply Hiragana ,Katakana etcc..

@@ -1,2 +1,0 @@
-About Cache Transformation In SSIS?
-	Cache Transfromation Can be Used to Produce the .caw File Which Can be used in Lookup Transformation along with Cache Connection in Other SSIS Packages.

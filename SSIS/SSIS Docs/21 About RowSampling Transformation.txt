@@ -1,2 +1,0 @@
-About RowSampling Transformation in SSIS
-	RowSampling Transformation can be Used to get the Nof Of Rows From the Source System.
